@@ -94,7 +94,7 @@ module.exports = {
 			serviceWorkerLoader: `<script>${registerSw(swName)}</script>`
 		}),
 		new InjectManifest({
-			swSrc: path.resolve(__dirname, "../src/service-worker.js"),
+			swSrc: path.resolve(__dirname, "../src/serviceWorker.js"),
 			swDest: "serviceWorker.js",
 			exclude: [/(app.js)/]
 		}),
