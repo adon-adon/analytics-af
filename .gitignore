@@ -1,0 +1,8 @@
+node_modules
+/dist
+.gitlab-ci.yml
+.devcontainer
+.vscode
+.idea
+*lock
+.DS_Store

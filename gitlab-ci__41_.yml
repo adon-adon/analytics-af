@@ -1,0 +1,43 @@
+stages:
+  - prod
+  - dogfood
+  - playtest
+before_script:
+#    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+#    - chmod 700 ~/.ssh/id_rsa
+    - pwd
+    - hostname
+    - ip a
+    - id
+
+prod:
+  stage: prod
+  variables:
+    HOSTS: 172.20.1.60 172.20.1.79
+  script:
+    - nvm use v10.15.3
+    - yarn install
+    - npm run build
+    - echo "'Date:'`date` 'Branch:'$CI_COMMIT_REF_NAME 'Commit:'$CI_COMMIT_SHORT_SHA 'Env:'$CI_JOB_STAGE" >> dist/version.txt
+    - for HOST in $HOSTS;do echo $HOST;
+        rsync -a --delete dist/ $HOST:/data/web/lottery_pc/;
+        rsync -a --delete dist/ $HOST:/data/backup/lottery_pc_`date +%Y%m%d%H%M%S/` ;
+        done
+  only:
+    refs:
+      - master
+
+dogfood:
+  stage: dogfood
+  variables:
+    HOST: 10.20.11.158
+  script:
+    - nvm use v10.15.3
+    - yarn install
+    - npm run build
+    - echo "'Date:'`date` 'Branch:'$CI_COMMIT_REF_NAME 'Commit:'$CI_COMMIT_SHORT_SHA 'Env:'$CI_JOB_STAGE" >> dist/version.txt
+    - rsync -a --delete dist/ $HOST:/data/web/lottery_pc/
+  only:
+    refs:
+      - dogfood
+

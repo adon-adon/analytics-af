@@ -1,0 +1,273 @@
+// 主色调
+$app-yellow: #f7bd01;
+$app-white : #ffffff;
+
+// 文字颜色
+$text-white: #fff;
+$text-white8: rgba($color: #fff, $alpha: 0.8);
+$text-white6: rgba($color: #fff, $alpha: 0.6);
+$text-white3: rgba($color: #fff, $alpha: 0.3);
+$text-black: #262626;
+$text-black8: rgba($color: #262626, $alpha: 0.8);
+$text-black6: rgba($color: #262626, $alpha: 0.6);
+$text-gray: #999999;
+
+// 背景色
+$bgc-black: #262626;
+$bgc-black-promotion: #252525;
+$bgc-black-the: #2B2C2C;
+$bgc-gray : #3A3A3B;
+$bgc-gray81: #818181;
+$bgc-white: #fff;
+$bgc-hover: #999999;
+$bgc-register: #1A1A1A;
+
+
+// 边框色，线条色
+$line: #616263;
+$line2: #4a4b4b;
+$line-gray: #eee;
+
+// -------------------------------------------------------------------------------------------------
+// 背景图片地址和大小
+@mixin bgc-img($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+// 线性渐变色
+@mixin bgc-color-line($color1: #FBB132, $color2: #FFDA03, $dir: to right) {
+  background: linear-gradient($dir, $color1, $color2);
+}
+
+// 边框
+@mixin border($size: 1px, $color: $line) {
+  border: $size solid $color;
+  /* no */
+}
+
+@mixin bt($size: 1px, $color: $line) {
+  border-top: $size solid $color;
+  /* no */
+}
+
+@mixin br($size: 1px, $color: $line) {
+  border-right: $size solid $color;
+  /* no */
+}
+
+@mixin bb($size: 1px, $color: $line) {
+  border-bottom: $size solid $color;
+  /* no */
+}
+
+@mixin bl($size: 1px, $color: $line) {
+  border-left: $size solid $color;
+  /* no */
+}
+
+
+// 定位上下左右居中
+@mixin position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 定位上下居中
+@mixin position-centerY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 定位左右居中  
+@mixin position-centerX {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 宽高
+@mixin wh($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+// 字体大小，颜色，行高
+@mixin font($size, $color, $line-height: normal) {
+  font-size: $size;
+  color: $color;
+  line-height: $line-height;
+}
+
+// flex 布局和 子元素 对其方式
+@mixin flex($align: center, $justify: center, $direction: row, $wrap: nowrap) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+
+// 超出范围字体使用···隐藏
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-ellipsis($line:1) {
+  text-overflow: ellipsis; // 用省略号“…”隐藏超出范围的文本
+  overflow: hidden; // 超出范围的内容隐藏
+  display: -webkit-box; // 将对象作为弹性伸缩盒子模型显示 
+  -webkit-line-clamp: $line; // 第几行出现省略号
+  -webkit-box-orient: vertical; // 设置或检索伸缩盒对象的子元素的排列方式 
+}
+
+
+
+// -------------------------------------------------------------------------------------------------
+.border {
+  border: 1px solid $line;
+  /* no */
+}
+
+.bt {
+  border-top: 1px solid $line;
+  /* no */
+}
+
+.br {
+  border-right: 1px solid $line;
+  /* no */
+}
+
+.bb {
+  border-bottom: 1px solid $line;
+  /* no */
+}
+
+.bl {
+  border-left: 1px solid $line;
+  /* no */
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.button {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #FBB132, #FFDA03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: $text-black;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+
+  /* Non-prefixed version, currently*/
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.button-line-active {
+  width: 100%;
+  height: 40px;
+  color: $app-yellow;
+  border: 1px solid $app-yellow;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+
+  /* Non-prefixed version, currently*/
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.button-line {
+  width: 100%;
+  height: 40px;
+  color: $text-white6;
+  background-color: transparent;
+  border: 1px solid $text-white3;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+
+  /* Non-prefixed version, currently*/
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  background: $bgc-gray81;
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+.text-btn {
+  color: #fdbe01e6;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.btn-active {
+  &:active {
+    opacity: 0.9;
+  }
+}
