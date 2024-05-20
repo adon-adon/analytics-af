@@ -2,6 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const { resolve, getConditionalLoader, assetsPath } = require('./utils');
 const dayjs = require('dayjs');
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const { GenerateSW } = require("workbox-webpack-plugin");
+
 
 module.exports = {
 	entry: {
@@ -82,7 +86,37 @@ module.exports = {
 				collapseWhitespace: true, // 删除空符与换符
 				minifyCSS: true, // 压缩内联css
 			},
-		})
+		}),
+		new GenerateSW({
+			clientsClaim: true,
+			skipWaiting: true,
+			runtimeCaching: [
+				{
+					urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
+					handler: "CacheFirst",
+					options: {
+						cacheName: "images",
+						expiration: {
+							maxEntries: 10,
+						},
+					},
+				},
+				{
+					urlPattern: new RegExp("https://888b.com/"),
+					handler: "NetworkFirst",
+					options: {
+						cacheName: "api",
+						networkTimeoutSeconds: 10,
+						expiration: {
+							maxEntries: 10,
+						},
+					},
+				},
+			],
+		}),
+		new CopyPlugin({
+			patterns: [{ from: path.resolve(__dirname, '../static'), to: 'static' }],
+		}),
 	],
 	resolve: {
 		symlinks: false,

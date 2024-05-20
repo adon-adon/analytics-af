@@ -102,7 +102,7 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(vuex@3.6.2(vue@2.7.16))
       workbox-webpack-plugin:
-        specifier: ^v4.3.1
+        specifier: ^4.3.1
         version: 4.3.1(webpack@5.91.0(webpack-cli@5.1.4))
     devDependencies:
       '@babel/cli':

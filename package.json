@@ -44,7 +44,7 @@
     "vue2-better-scroll": "^2.0.1",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.1.0",
-    "workbox-webpack-plugin": "^v4.3.1"
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.0",

@@ -1,26 +1,26 @@
-const webpack = require('webpack');
-const { merge } = require('webpack-merge');
-const { getConditionalLoader, assetsPath } = require('./utils');
-const config = require('../config/index.js');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const WebpackBar = require('webpackbar');
-const TerserPlugin = require('terser-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const { DefinePlugin } = require('webpack');
-const webpackCommonConfig = require('./webpack.common.js');
-const CopyPlugin = require('copy-webpack-plugin');
-const path = require('path');
-const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
+const webpack = require("webpack");
+const { merge } = require("webpack-merge");
+const { getConditionalLoader, assetsPath } = require("./utils");
+const config = require("../config/index.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const WebpackBar = require("webpackbar");
+const TerserPlugin = require("terser-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const { DefinePlugin } = require("webpack");
+const webpackCommonConfig = require("./webpack.common.js");
+const CopyPlugin = require("copy-webpack-plugin");
+const path = require("path");
+const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
 
 module.exports = merge(webpackCommonConfig, {
-	mode: 'production',
+	mode: "production",
 	devtool: false,
 	output: {
 		path: config.build.assetsRoot,
 		publicPath: config.build.assetsPublicPath,
-		filename: assetsPath('js/[name].[chunkhash].js'),
-		chunkFilename: assetsPath('js/[id].[chunkhash].js'),
+		filename: assetsPath("js/[name].[chunkhash].js"),
+		chunkFilename: assetsPath("js/[id].[chunkhash].js"),
 		clean: true,
 	},
 	module: {
@@ -29,12 +29,12 @@ module.exports = merge(webpackCommonConfig, {
 				test: /\.css$/,
 				use: [
 					MiniCssExtractPlugin.loader,
-					'css-loader',
+					"css-loader",
 					{
-						loader: 'postcss-loader',
+						loader: "postcss-loader",
 					},
 					{
-						loader: 'px2rem-loader',
+						loader: "px2rem-loader",
 						options: {
 							remUnit: 37.5,
 						},
@@ -46,33 +46,31 @@ module.exports = merge(webpackCommonConfig, {
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
-						loader: 'css-loader',
+						loader: "css-loader",
 						options: {
 							sourceMap: false,
 						},
 					},
 					{
-						loader: 'postcss-loader',
+						loader: "postcss-loader",
 					},
 					{
-						loader: 'px2rem-loader',
+						loader: "px2rem-loader",
 						options: {
-						  remUnit: 37.5
-						}
-					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: false,
-							implementation: require('node-sass'),
+							remUnit: 37.5,
 						},
 					},
 					{
-						loader: 'sass-resources-loader',
+						loader: "sass-loader",
 						options: {
-							resources: [
-								path.join(__dirname, '../src/style/main.scss')
-							],
+							sourceMap: false,
+							implementation: require("node-sass"),
+						},
+					},
+					{
+						loader: "sass-resources-loader",
+						options: {
+							resources: [path.join(__dirname, "../src/style/main.scss")],
 						},
 					},
 					getConditionalLoader(),
@@ -83,13 +81,13 @@ module.exports = merge(webpackCommonConfig, {
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
-						loader: 'css-loader',
+						loader: "css-loader",
 						options: {
 							sourceMap: false,
 						},
 					},
 					{
-						loader: 'less-loader',
+						loader: "less-loader",
 						options: {
 							sourceMap: false,
 						},
@@ -101,16 +99,16 @@ module.exports = merge(webpackCommonConfig, {
 	},
 	plugins: [
 		new DefinePlugin({
-			BASE_URL: JSON.stringify('/'),
-			'process.env': config.build.env,
+			BASE_URL: JSON.stringify("/"),
+			"process.env": config.build.env,
 		}),
 		new MiniCssExtractPlugin({
-			filename: assetsPath('css/[name]_[contenthash:8].css'),
+			filename: assetsPath("css/[name]_[contenthash:8].css"),
 			ignoreOrder: true,
 		}),
 		// 进度条
 		new WebpackBar({
-			reporters: ['fancy', 'profile'],
+			reporters: ["fancy", "profile"],
 			profile: true,
 		}),
 		// new CopyPlugin({
@@ -134,14 +132,14 @@ module.exports = merge(webpackCommonConfig, {
 		// })
 	],
 	optimization: {
-		moduleIds: 'deterministic',
+		moduleIds: "deterministic",
 		runtimeChunk: true,
 		minimize: true,
 		minimizer: [
 			new CssMinimizerPlugin({
 				minimizerOptions: {
 					preset: [
-						'default',
+						"default",
 						{
 							discardComments: { removeAll: true },
 						},
@@ -175,7 +173,7 @@ module.exports = merge(webpackCommonConfig, {
 				// 	reuseExistingChunk: true,
 				// },
 				defaultVendors: {
-					chunks: 'all',
+					chunks: "all",
 					// We could have also set this property as: `splitChunks.minSize: 0`,
 					// since this property is inherited(by default) by the cache groups.
 					minSize: 10,
