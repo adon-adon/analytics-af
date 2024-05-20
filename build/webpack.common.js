@@ -101,7 +101,7 @@ module.exports = {
                 // https://github.com/kangax/html-minifier#options-quick-reference
             },
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-            chunksSortMode: "dependency",
+            // chunksSortMode: "dependency",
 			serviceWorkerLoader: `<script>${registerSw(swName)}</script>`
 		}),
 		new InjectManifest({
