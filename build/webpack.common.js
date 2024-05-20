@@ -85,12 +85,23 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			id: `update-time_${dayjs().format("YYYY-MM-DD___hh:mm:ss")}`,
 			template: resolve('index.html'),
-			inject: 'body',
+			// inject: 'body',
 			minify: {
 				removeComments: true, // 移除HTML中的注释
 				collapseWhitespace: true, // 删除空符与换符
 				minifyCSS: true, // 压缩内联css
 			},
+			inject: true,
+            hash: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+                // more options:
+                // https://github.com/kangax/html-minifier#options-quick-reference
+            },
+            // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+            chunksSortMode: "dependency",
 			serviceWorkerLoader: `<script>${registerSw(swName)}</script>`
 		}),
 		new InjectManifest({
