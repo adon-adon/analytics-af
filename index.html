@@ -66,6 +66,15 @@
 
         <meta name="msapplication-TileColor" content="#000000" />
 
+        <% for (var chunk of webpack.chunks) { for (var file of chunk.files) {
+          if (file.match(/\.(js|css)$/)) { %>
+          <link
+              rel="<%= chunk.initial?'preload':'prefetch' %>"
+              href="<%= htmlWebpackPlugin.files.publicPath + file %>"
+              as="<%= file.match(/\.css$/)?'style':'script' %>"
+          />
+        <% }}} %>
+
         <!-- Meta Pixel Code -->
         <script>
             !(function (f, b, e, v, n, t, s) {
@@ -106,36 +115,39 @@
 
     <body>
         <div id="app"></div>
+        <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
         
         <h1>Hello, PWA!</h1>
         <button id="installButton">Install PWA</button>
         <script>
-            if ('serviceWorker' in navigator) {
-              window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, err => {
-                  console.log('ServiceWorker registration failed: ', err);
-                });
-              });
-            }
-        
-            let deferredPrompt;
-            window.addEventListener('beforeinstallprompt', (e) => {
-              e.preventDefault();
-              deferredPrompt = e;
-              document.getElementById('installButton').addEventListener('click', () => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                  if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                  } else {
-                    console.log('User dismissed the install prompt');
+          document.documentElement.addEventListener(
+              "touchstart",
+              function(event) {
+                  if (event.touches.length > 1) {
+                      event.preventDefault();
                   }
-                  deferredPrompt = null;
-                });
-              });
-            });
-          </script>
+              },
+              false
+          );
+
+          var lastTouchEnd = 0;
+          document.documentElement.addEventListener(
+              "touchend",
+              function(event) {
+                  var now = Date.now();
+                  if (now - lastTouchEnd <= 300) {
+                      event.preventDefault();
+                  }
+                  lastTouchEnd = now;
+              },
+              false
+          );
+
+          document.addEventListener("gesturestart", function(event) {
+              event.preventDefault();
+          });
+
+
+      </script>
     </body>
 </html>
