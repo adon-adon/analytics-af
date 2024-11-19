@@ -1,153 +1,39 @@
-<!DOCTYPE html>
-<html class="version01">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0"
-            charset="utf-8"
-        />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge,IE=edge,chrome=1" />
-        <meta name="screen-orientation" content="portrait" />
-        <meta name="x5-orientation" content="portrait" />
-        <meta
-            name="description"
-            content="✅ Nhà cái hàng đầu Việt Nam - Châu Á, chuyên trang tổng hợp cá độ bóng đá, xổ số lô đề, casion trực tuyến, game bài, bắn cá giải trí"
-        />
-        <meta property="og:locale" content="vi_VN" />
-        <meta property="og:type" content="website" />
-        <meta
-            property="og:title"
-            content="888b - Best for Bet | Nhà cái casino tổng hợp thể thao, bóng đá, game bài, xổ số hàng đầu"
-        />
-        <meta
-            property="og:description"
-            content="✅ Nhà cái hàng đầu Việt Nam - Châu Á, chuyên trang tổng hợp cá độ bóng đá, xổ số lô đề, casion trực tuyến, game bài, bắn cá giải trí"
-        />
-        <meta property="og:site_name" content="Nhà cái 888b - Best for bet" />
-        <link
-            rel="shortcut icon"
-            href="./static/favicon.ico"
-            type="image/x-icon"
-        />
-        <link rel="manifest" href="./static/manifest.json">
-        <title>
-            888b - Best for Bet | Nhà cái casino tổng hợp thể thao, bóng đá,
-            game bài, xổ số hàng đầu
-        </title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
 
-        <!-- -------------------------------- 自定义字体 -------------------------------- -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
-            rel="stylesheet"
-        />
-
-        <meta name="theme-color" content="#262626" />
-
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta name="apple-mobile-web-app-title" content="888b.com" />
-        <link
-            rel="apple-touch-icon"
-            href="/static/img/icons/apple-touch-icon-152x152.png"
-        />
-        <meta
-            name="msapplication-TileImage"
-            content="/assets/static/icons/msapplication-icon-144x144.png"
-        />
-
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-        />
-
-        <meta name="msapplication-TileColor" content="#000000" />
-
-        <% for (var chunk of webpack.chunks) { for (var file of chunk.files) {
-          if (file.match(/\.(js|css)$/)) { %>
-          <link
-              rel="<%= chunk.initial?'preload':'prefetch' %>"
-              href="<%= htmlWebpackPlugin.files.publicPath + file %>"
-              as="<%= file.match(/\.css$/)?'style':'script' %>"
-          />
-        <% }}} %>
-
-        <!-- Meta Pixel Code -->
-        <script>
-            !(function (f, b, e, v, n, t, s) {
-                if (f.fbq) return;
-                n = f.fbq = function () {
-                    n.callMethod
-                        ? n.callMethod.apply(n, arguments)
-                        : n.queue.push(arguments);
-                };
-                if (!f._fbq) f._fbq = n;
-                n.push = n;
-                n.loaded = !0;
-                n.version = "2.0";
-                n.queue = [];
-                t = b.createElement(e);
-                t.async = !0;
-                t.src = v;
-                s = b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t, s);
-            })(
-                window,
-                document,
-                "script",
-                "https://connect.facebook.net/en_US/fbevents.js"
-            );
-            fbq("init", "1895986837489822");
-            fbq("track", "PageView");
-        </script>
-        <noscript
-            ><img
-                height="1"
-                width="1"
-                style="display: none"
-                src="https://www.facebook.com/tr?id=1895986837489822&ev=PageView&noscript=1"
-        /></noscript>
-        <!-- End Meta Pixel Code -->
-    </head>
-
-    <body>
-        <div id="app"></div>
-        <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
-        
-        <h1>Hello, PWA!</h1>
-        <button id="installButton">Install PWA</button>
-        <script>
-          document.documentElement.addEventListener(
-              "touchstart",
-              function(event) {
-                  if (event.touches.length > 1) {
-                      event.preventDefault();
-                  }
-              },
-              false
-          );
-
-          var lastTouchEnd = 0;
-          document.documentElement.addEventListener(
-              "touchend",
-              function(event) {
-                  var now = Date.now();
-                  if (now - lastTouchEnd <= 300) {
-                      event.preventDefault();
-                  }
-                  lastTouchEnd = now;
-              },
-              false
-          );
-
-          document.addEventListener("gesturestart", function(event) {
-              event.preventDefault();
-          });
-
-
-      </script>
-    </body>
+    <!-- Facebook Pixel Code -->
+		<script>
+			!(function (f, b, e, v, n, t, s) {
+				if (f.fbq) return;
+				n = f.fbq = function () {
+					n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+				};
+				if (!f._fbq) f._fbq = n;
+				n.push = n;
+				n.loaded = !0;
+				n.version = "2.0";
+				n.queue = [];
+				t = b.createElement(e);
+				t.async = !0;
+				t.src = v;
+				s = b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t, s);
+			})(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+			fbq("init", "1535837110400655");
+			fbq("track", "PageView");
+		</script>
+		<noscript>
+			<img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1075013703949222&ev=PageView&noscript=1" />
+		</noscript>
+		<!-- End Facebook Pixel Code -->
+  </body>
 </html>

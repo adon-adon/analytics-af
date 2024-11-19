@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	margin: 0;
+	font-family: Montserrat, Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+i {
+	font-style: normal;
+}
+
+// 超出显示省略号
+@mixin qEllipsis($wid: 300px) {
+	width: $wid;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.fix-toast-container {
+	max-width: unset !important;
+	background-color: unset !important;
+	box-shadow: unset !important;
+
+	div:first-child {
+		margin: 0 !important;
+		box-shadow: unset !important;
+	}
+}
+
+.wrapper-content {
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+}
+
+iframe {
+	width: 100%;
+	height: 0;
+
+	// padding-bottom: 75%;
+	border: none;
+}
+
+.adm-toast-icon {
+	svg {
+		display: inline-block;
+	}
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #f2f2f2;
+	border-radius: 3px;
+	box-shadow: inset 0 0 5px rgb(0 0 0 / 0%);
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+	background-color: #49b3ff;
+	border-radius: 12px;
+	box-shadow: inset 0 0 10px rgb(0 0 0 / 20%);
+}
+
+// ::-webkit-scrollbar {
+// 	width: 14px !important;
+// 	height: 14px !important;
+// 	background-color: #49B3FF;
+// 	border: 4px solid transparent;
+// 	background-clip: content-box;
+// }
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+	background-color: #49b3ff;
+	border-radius: 12px;
+	// border: 4px solid transparent;
+	background-clip: content-box;
+}
